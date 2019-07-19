@@ -2,42 +2,36 @@
 
 public class Main {
     public static void main(String[] args) {
-//        MyArrayList<Integer> mal = new MyArrayList();
-//
-//        mal.add(5);
-//        mal.add(6);
-//        mal.add(7);
-//        mal.add(2,88);
-//        System.out.println(mal);
-//
-//        mal.remove(5);
-//        System.out.println(mal);
-//
-//        System.out.println(mal.find(5));
 
-//        MySortedArrayList<Integer> sortedAl = new MySortedArrayList();
-//        sortedAl.add(7);
-//        sortedAl.add(1);
-//        sortedAl.add(2);
-//        sortedAl.add(9);
-//        sortedAl.add(7);
-//
-//        System.out.println(sortedAl);
-//        System.out.println(sortedAl.binaryFind(9));
 
-        MyArrayList<Integer> mal = new MyArrayList(200);
+        MyArrayList<Integer> mal = new MyArrayList(100000);
 
-        for (int i = 0; i < 100; i++) {
-            mal.add(i+ (int)(Math.random()*10));
+        for (int i = 0; i < 100000; i++) {
+            mal.add(i + (int) (Math.random() * 100000));
         }
-//        System.out.println(mal);
-
-//
-//        mal.selectionSort();
-//        mal.insertionSort();
+        long timeBegin = System.currentTimeMillis();
         mal.bubbleSort();
+        System.out.println("Время сортировки пузырьком " + (System.currentTimeMillis() - timeBegin));
 
-//        System.out.println(mal);
+        MyArrayList<Integer> malIns = new MyArrayList(100000);
+
+        for (int k = 0; k < 100000; k++) {
+            malIns.add((int) (Math.random() * 100000));
+        }
+       timeBegin = System.currentTimeMillis();
+        malIns.insertionSort();
+        System.out.println("Время сортировки вставками " + (System.currentTimeMillis() - timeBegin));
+
+
+        MyArrayList<Integer> malSel = new MyArrayList(1000000);
+
+        for (int k = 0; k < 100000; k++) {
+            malSel.add((int) (Math.random() * 100000));
+        }
+        timeBegin = System.currentTimeMillis();
+        malSel.selectionSort();
+        System.out.println("Время сортировки выбором " + (System.currentTimeMillis() - timeBegin));
+
 
     }
 }

@@ -79,6 +79,7 @@ public class MyArrayList<Item extends Comparable> {
         Item temp = list[index1];
         list[index1] = list[index2];
         list[index2] = temp;
+
     }
 
     public void selectionSort() {
@@ -96,19 +97,27 @@ public class MyArrayList<Item extends Comparable> {
     }
 
     public void insertionSort() {
-        Item key;
-        for (int i = 1; i < size; i++) {
-            int j = i;
-            key = list[i];
-            while (j > 0 && less(key, list[j - 1])) {
-                list[j] = list[j - 1];
-                j--;
+        for (int left = 0; left < size; left++) {
+            // Вытаскиваем значение элемента
+            Item value = list[left];
+            // Перемещаемся по элементам, которые перед вытащенным элементом
+            int i = left - 1;
+            for (; i >= 0; i--) {
+                // Если вытащили значение меньшее — передвигаем больший элемент дальше
+                if (less(value, list[i])) {
+                    list[i + 1] = list[i];
+                } else {
+                    // Если вытащенный элемент больше — останавливаемся
+                    break;
+                }
             }
-            list[j] = key;
+            // В освободившееся место вставляем вытащенное значение
+            list[i + 1] = value;
         }
     }
 
     public void bubbleSort(){
+        // в худшем и среднем случае – O(n2), в лучшем случае – O(n).
         boolean isSwap;
         for (int i = size-1; i >0 ; i--) {
             isSwap = false;
