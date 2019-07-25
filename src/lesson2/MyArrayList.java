@@ -1,3 +1,5 @@
+package lesson2;
+
 public class MyArrayList<Item extends Comparable> {
     private Item[] list;
     private int size = 0;

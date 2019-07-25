@@ -1,3 +1,5 @@
+package lesson2;
+
 public class MySortedArrayList<Item extends Comparable> extends MyArrayList<Item> {
 
     @Override
