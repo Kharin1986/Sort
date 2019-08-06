@@ -5,12 +5,14 @@ import java.util.NoSuchElementException;
 public class BST<Key extends Comparable<Key>, Value> {
     private Node root;
 
+
     private class Node {
         private Key key;
         private Value value;
         private Node left;
         private Node right;
         private int size;
+
 
         public Node(Key key, Value value) {
             this.key = key;
@@ -23,6 +25,8 @@ public class BST<Key extends Comparable<Key>, Value> {
         return size(root);
     }
 
+
+
     private int size(Node node) {
         if (node == null) {
             return 0;
@@ -30,13 +34,14 @@ public class BST<Key extends Comparable<Key>, Value> {
         return node.size;
     }
 
+
     public boolean isEmpty() {
         return root == null;
     }
 
     private boolean isKeyNotNull(Key key) {
         if (key == null) {
-            throw new IllegalArgumentException("Ключ не может быть null");
+            throw new IllegalArgumentException("key null");
         }
         return true;
     }
@@ -157,6 +162,30 @@ public class BST<Key extends Comparable<Key>, Value> {
         node.size = size(node.left) + size(node.right) + 1;
         return node;
     }
+    private int heightOfBinaryTree(Node node)
+    {
+        if (node == null)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 +
+                    Math.max(heightOfBinaryTree(node.left),
+                            heightOfBinaryTree(node.right));
+        }
+    }
+
+    public int getHeight(){
+        return (heightOfBinaryTree(root));
+    }
+    public int getRightHeight(){
+        return (heightOfBinaryTree(root.right));
+    }
+    public int getLeftHeight(){
+        return (heightOfBinaryTree(root.left));
+    }
+
 
     @Override
     public String toString() {
