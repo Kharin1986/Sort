@@ -3,7 +3,7 @@ package lesson8;
 import java.util.LinkedList;
 
 public class ChainingHashMap<Key, Value> {
-    private int capacity = 7;
+    private int capacity = 10;
     private int size = 0;
 
     private LinkedList<Node>[] st;
@@ -58,6 +58,18 @@ public class ChainingHashMap<Key, Value> {
         size++;
     }
 
+    public void delete (Key key) {
+        isKeyNotNull(key);
+        int i = hash(key);
+        System.out.println(i);
+        for (Node node : st[i]) {
+            if (key.equals(node.key)) {
+                node.value = null;
+                return;
+            }
+        }
+    }
+
     public Value get(Key key) {
         isKeyNotNull(key);
         int i = hash(key);
@@ -74,7 +86,7 @@ public class ChainingHashMap<Key, Value> {
         String s = "";
         for (int i = 0; i < capacity; i++) {
             for (Node node : st[i]) {
-                s += node.key.toString() + " ";
+                s += node.key.toString() + " "+node.value+" ";
             }
             s += "\n";
         }
